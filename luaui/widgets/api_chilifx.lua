@@ -3,8 +3,7 @@ return {
     name      = "ChiliFX",
     desc      = "Chili Effects library",
     author    = "gajop",
-    date      = "in the future",
-    license   = "GPL-v2",
+    license   = "MIT",
     layer     = -999,
     enabled   = true,
     api       = true,
@@ -19,7 +18,7 @@ LCS = LCS()
 CHILILFX_DIR = LIBS_DIR .. "chilifx/chilifx/"
 
 function widget:Initialize()
-    if not WG.Chili then
+    if not WG.SBChili and not WG.Chili then
         Spring.Log("ChiliFX", LOG.ERROR, "Missing chiliui.")
         widgetHandler:RemoveWidget(widget)
         return
@@ -27,8 +26,7 @@ function widget:Initialize()
 
     ChiliFX = VFS.Include(CHILILFX_DIR .. "core.lua", nil)
 
-    local startDisabled = true
-    WG.ChiliFX = ChiliFX(true)
+    WG.ChiliFX = ChiliFX()
 end
 
 function widget:Shutdown()
